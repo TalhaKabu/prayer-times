@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/backend/PrayerTimes.Api/PrayerTimes.Api.csproj" />
+  <Project Path="src/backend/PrayerTimes.Application/PrayerTimes.Application.csproj" />
+  <Project Path="src/backend/PrayerTimes.Shared/PrayerTimes.Shared.csproj" Id="2ab5cfe1-6e4a-4983-a246-436d281855a1" />
+</Solution>

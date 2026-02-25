@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Namaz Vakitleri</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="prayer-card" *ngIf="prayerTimes">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>İmsak</ion-label>
+          <ion-note slot="end"> {{prayerTimes.Fajr}} </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Güneş</ion-label>
+          <ion-note slot="end"> {{prayerTimes.Sunrise}} </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Öğle</ion-label>
+          <ion-note slot="end"> {{prayerTimes.Dhuhr}} </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>İkindi</ion-label>
+          <ion-note slot="end"> {{prayerTimes.Asr}} </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Akşam</ion-label>
+          <ion-note slot="end"> {{prayerTimes.Maghrib}} </ion-note>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>Yatsı</ion-label>
+          <ion-note slot="end"> {{prayerTimes.Isha}} </ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

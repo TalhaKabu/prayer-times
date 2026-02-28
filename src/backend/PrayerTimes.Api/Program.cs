@@ -12,7 +12,8 @@ builder.Services.Resolve();
 builder.Services.AddCors(options => options.AddPolicy(name: "PrayerTimes",
     policy =>
     {
-        policy.WithOrigins("http://localhost:8100")
+        policy.WithOrigins("http://localhost:8100", "http://localhost:4200")
+            .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader();
     }));

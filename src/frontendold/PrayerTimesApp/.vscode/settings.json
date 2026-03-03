@@ -1,8 +1,0 @@
-{
-  "typescript.preferences.autoImportFileExcludePatterns": [
-    "@ionic/angular/common",
-    "@ionic/angular/standalone"
-  ],
-  "notebook.defaultFormatter": null,
-  "vs-code-prettier-eslint.prettierLast": true
-}

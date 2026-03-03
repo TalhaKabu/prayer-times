@@ -36,7 +36,22 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-body {
-  background-color: white;
-  color: black;
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ion-background-color: #ffffff !important;
+  --color: black;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+ion-content {
+  --background: #ffffff !important;
+  --color: black;
 }

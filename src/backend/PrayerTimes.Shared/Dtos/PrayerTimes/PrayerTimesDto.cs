@@ -1,11 +1,20 @@
-﻿namespace PrayerTimes.Shared.Dtos.PrayerTimes;
+﻿using System.Globalization;
+
+namespace PrayerTimes.Shared.Dtos.PrayerTimes;
+
+public class PrayerTimesResponseDto
+{
+    public PrayerTimesDto Fajr { get; set; }
+    public PrayerTimesDto Sunrise { get; set; }
+    public PrayerTimesDto Dhuhr { get; set; }
+    public PrayerTimesDto Asr { get; set; }
+    public PrayerTimesDto Maghrib { get; set; }
+    public PrayerTimesDto Isha { get; set; }
+}
 
 public class PrayerTimesDto
 {
-    public string Fajr { get; set; }
-    public string Sunrise { get; set; }
-    public string Dhuhr { get; set; }
-    public string Asr { get; set; }
-    public string Maghrib { get; set; }
-    public string Isha { get; set; }
+    public int Index { get; set; }
+    public string Name { get; set; }
+    public string Time { get; set; }
 }

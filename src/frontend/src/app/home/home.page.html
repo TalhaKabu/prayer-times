@@ -1,1 +1,33 @@
-<div>dsad</div>
+<div class="container" *ngIf="data">
+  <div class="header">
+    <ion-icon
+      class="mosque-icon"
+      src="../../assets/svgs/mosque-silhouette.svg"
+    ></ion-icon>
+    <p class="header-txt">Namaz Vakitleri</p>
+    <p class="date gregorian-date-txt">
+      <!-- {{ gregorianDate.day }} {{ getPrayerName(gregorianDate.month.en) }} {{
+      gregorianDate.year }} {{ getPrayerName(gregorianDate.weekday.en) }} -->
+    </p>
+    <p class="date hijri-date-txt">{{ hijriDate.display }}</p>
+  </div>
+  <div class="body">
+    <div class="count-down card">
+      <span class="next-pray-txt">SONRAKİ NAMAZ</span>
+      <span class="next-pray-name">{{getCurrentPrayer().nextPrayer.name}}</span>
+      <div class="next-pray-countdown">
+        <span>{{ remainingTime }}</span>
+      </div>
+    </div>
+    <div class="times">
+      <div class="time"></div>
+    </div>
+
+    <div class="grid">
+      <div class="box card" *ngFor="let prayerTime of prayerTimes">
+        <span class="time-header">{{ prayerTime.name }} </span>
+        <span class="time-time">{{ prayerTime.time }} </span>
+      </div>
+    </div>
+  </div>
+</div>

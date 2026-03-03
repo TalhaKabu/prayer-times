@@ -11,6 +11,6 @@ public static class DependencyResolver
         services
             .AddMemoryCache()
 
-            .AddHttpClient<IPrayerTimeService, PrayerTimeManager>();
+            .AddSingleton<IPrayerTimeService, PrayerTimeManager>();
     }
 }

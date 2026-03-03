@@ -1,0 +1,146 @@
+[
+  {
+    "hijriDay": 26,
+    "hijriMonth": "Receb",
+    "hijriYear": 1447,
+    "miladiDate": "2026-01-15",
+    "weekday": "Perşembe",
+    "event": "Miraç Kandili"
+  },
+  {
+    "hijriDay": 1,
+    "hijriMonth": "Şaban",
+    "hijriYear": 1447,
+    "miladiDate": "2026-01-20",
+    "weekday": "Salı",
+    "event": null
+  },
+  {
+    "hijriDay": 14,
+    "hijriMonth": "Şaban",
+    "hijriYear": 1447,
+    "miladiDate": "2026-02-02",
+    "weekday": "Pazartesi",
+    "event": "Berat Kandili"
+  },
+  {
+    "hijriDay": 1,
+    "hijriMonth": "Ramazan",
+    "hijriYear": 1447,
+    "miladiDate": "2026-02-19",
+    "weekday": "Perşembe",
+    "event": "Ramazan Başlangıcı"
+  },
+  {
+    "hijriDay": 26,
+    "hijriMonth": "Ramazan",
+    "hijriYear": 1447,
+    "miladiDate": "2026-03-16",
+    "weekday": "Pazartesi",
+    "event": "Kadir Gecesi"
+  },
+  {
+    "hijriDay": 29,
+    "hijriMonth": "Ramazan",
+    "hijriYear": 1447,
+    "miladiDate": "2026-03-19",
+    "weekday": "Perşembe",
+    "event": "Arefe"
+  },
+  {
+    "hijriDay": 1,
+    "hijriMonth": "Şevval",
+    "hijriYear": 1447,
+    "miladiDate": "2026-03-20",
+    "weekday": "Cuma",
+    "event": "Ramazan Bayramı (1. Gün)"
+  },
+  {
+    "hijriDay": 2,
+    "hijriMonth": "Şevval",
+    "hijriYear": 1447,
+    "miladiDate": "2026-03-21",
+    "weekday": "Cumartesi",
+    "event": "Ramazan Bayramı (2. Gün)"
+  },
+  {
+    "hijriDay": 3,
+    "hijriMonth": "Şevval",
+    "hijriYear": 1447,
+    "miladiDate": "2026-03-22",
+    "weekday": "Pazar",
+    "event": "Ramazan Bayramı (3. Gün)"
+  },
+  {
+    "hijriDay": 1,
+    "hijriMonth": "Zilkade",
+    "hijriYear": 1447,
+    "miladiDate": "2026-04-18",
+    "weekday": "Cumartesi",
+    "event": null
+  },
+  {
+    "hijriDay": 1,
+    "hijriMonth": "Zilhicce",
+    "hijriYear": 1447,
+    "miladiDate": "2026-05-18",
+    "weekday": "Pazartesi",
+    "event": null
+  },
+  {
+    "hijriDay": 9,
+    "hijriMonth": "Zilhicce",
+    "hijriYear": 1447,
+    "miladiDate": "2026-05-26",
+    "weekday": "Salı",
+    "event": "Arefe"
+  },
+  {
+    "hijriDay": 10,
+    "hijriMonth": "Zilhicce",
+    "hijriYear": 1447,
+    "miladiDate": "2026-05-27",
+    "weekday": "Çarşamba",
+    "event": "Kurban Bayramı (1. Gün)"
+  },
+  {
+    "hijriDay": 11,
+    "hijriMonth": "Zilhicce",
+    "hijriYear": 1447,
+    "miladiDate": "2026-05-28",
+    "weekday": "Perşembe",
+    "event": "Kurban Bayramı (2. Gün)"
+  },
+  {
+    "hijriDay": 12,
+    "hijriMonth": "Zilhicce",
+    "hijriYear": 1447,
+    "miladiDate": "2026-05-29",
+    "weekday": "Cuma",
+    "event": "Kurban Bayramı (3. Gün)"
+  },
+  {
+    "hijriDay": 13,
+    "hijriMonth": "Zilhicce",
+    "hijriYear": 1447,
+    "miladiDate": "2026-05-30",
+    "weekday": "Cumartesi",
+    "event": "Kurban Bayramı (4. Gün)"
+  },
+  {
+    "hijriDay": 1,
+    "hijriMonth": "Muharrem",
+    "hijriYear": 1448,
+    "miladiDate": "2026-06-16",
+    "weekday": "Salı",
+    "event": "Hicri Yılbaşı"
+  },
+  {
+    "hijriDay": 10,
+    "hijriMonth": "Muharrem",
+    "hijriYear": 1448,
+    "miladiDate": "2026-06-25",
+    "weekday": "Perşembe",
+    "event": "Aşure Günü"
+  }
+]

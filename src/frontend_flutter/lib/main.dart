@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_flutter/my_navigation_bar.dart';
+import 'package:frontend_flutter/home.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,9 +13,14 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Namaz Vakitleri',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF11d483)),
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        fontFamily: 'Inter',
       ),
-      home: const MyNavigationBar(),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
   }
 }

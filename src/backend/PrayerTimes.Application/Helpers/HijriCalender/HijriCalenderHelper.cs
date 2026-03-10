@@ -31,7 +31,7 @@ public static class HijriCalenderHelper
         }
         else
         {
-            var ls = list.FindAll(x => x.Miladi Date.Month.Equals(date.Month));
+            //var ls = list.FindAll(x => x.Miladi Date.Month.Equals(date.Month));
 
 
         }

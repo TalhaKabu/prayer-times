@@ -38,7 +38,7 @@ class PrayerTimesCalculatorHelper {
     return [
       PrayerTimesModel(
         index: 0,
-        name: 'Sabah',
+        name: 'İmsak',
         date: _toDate(date, fajr + 0.2 / 60),
         iconPath: 'assets/svgs/fajr.svg',
       ),

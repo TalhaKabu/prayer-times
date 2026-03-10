@@ -16,6 +16,8 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return BottomNavigationBar(
       items: bottomNavItems.map((item) {
         return BottomNavigationBarItem(
@@ -25,7 +27,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             width: 24,
             height: 24,
             colorFilter: ColorFilter.mode(
-              Theme.of(context).unselectedWidgetColor,
+              colorScheme.secondary,
               BlendMode.srcIn,
             ),
           ),
@@ -33,103 +35,13 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             item.activeIconPath,
             width: 30,
             height: 30,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).primaryColor,
-              BlendMode.srcIn,
-            ),
+            colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
           ),
-          backgroundColor: Colors.grey[200],
+          backgroundColor: Colors.white,
         );
       }).toList(),
-      // items: <BottomNavigationBarItem>[
-      //   BottomNavigationBarItem(
-      //     backgroundColor: Colors.grey[200],
-      //     label: "Prayer Times",
-      //     icon: SvgPicture.asset(
-      //       'assets/svgs/pray.svg',
-      //       width: 24,
-      //       height: 24,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).unselectedWidgetColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //     activeIcon: SvgPicture.asset(
-      //       'assets/svgs/pray.svg',
-      //       width: 30,
-      //       height: 30,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).primaryColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //   ),
-      //   BottomNavigationBarItem(
-      //     label: "Quran",
-      //     icon: SvgPicture.asset(
-      //       'assets/svgs/quran.svg',
-      //       width: 24,
-      //       height: 24,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).unselectedWidgetColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //     activeIcon: SvgPicture.asset(
-      //       'assets/svgs/quran.svg',
-      //       width: 30,
-      //       height: 30,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).primaryColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //   ),
-      //   BottomNavigationBarItem(
-      //     label: "Qible",
-      //     icon: SvgPicture.asset(
-      //       'assets/svgs/compass.svg',
-      //       width: 24,
-      //       height: 24,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).unselectedWidgetColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //     activeIcon: SvgPicture.asset(
-      //       'assets/svgs/compass.svg',
-      //       width: 30,
-      //       height: 30,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).primaryColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //   ),
-      //   BottomNavigationBarItem(
-      //     label: "More",
-      //     icon: SvgPicture.asset(
-      //       'assets/svgs/more.svg',
-      //       width: 24,
-      //       height: 24,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).unselectedWidgetColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //     activeIcon: SvgPicture.asset(
-      //       'assets/svgs/more.svg',
-      //       width: 30,
-      //       height: 30,
-      //       colorFilter: ColorFilter.mode(
-      //         Theme.of(context).primaryColor,
-      //         BlendMode.srcIn,
-      //       ),
-      //     ),
-      //   ),
-      // ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Theme.of(context).primaryColor,
+      selectedItemColor: colorScheme.primary,
       unselectedItemColor: Colors.grey,
       selectedIconTheme: IconThemeData(size: 24), // aktif ikon boyutu
       unselectedIconTheme: IconThemeData(size: 24),

@@ -10,8 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.20.2
+  permission_handler: ^10.2.0
   flutter_svg: ^2.2.4
-
   rive: ^0.12.4
 
 dev_dependencies:

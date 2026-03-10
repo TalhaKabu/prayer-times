@@ -30,12 +30,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: colorScheme.onPrimaryFixedVariant,
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: colorScheme.onPrimaryFixedVariant,
         leadingWidth: 60,
         titleSpacing: 6,
         title: Text(

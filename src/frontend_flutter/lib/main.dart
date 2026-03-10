@@ -13,7 +13,14 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Namaz Vakitleri',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF11d483)),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFFD0F3E4),
+          primary: Color(0xFF11d483),
+          primaryFixed: Color(0xFFE5F8F0),
+          onPrimaryFixedVariant: Color(0xFFF7FDFB),
+          secondary: Colors.grey[500],
+          secondaryFixed: Colors.grey[200],
+        ),
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,

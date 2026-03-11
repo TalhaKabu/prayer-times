@@ -1,9 +1,10 @@
 class PrayerTimesModel {
   final int index;
   final String name;
-  bool isSelected = false;
   final String iconPath;
   DateTime date;
+  bool isSelected = false;
+  bool isNext = false;
 
   PrayerTimesModel({
     required this.index,

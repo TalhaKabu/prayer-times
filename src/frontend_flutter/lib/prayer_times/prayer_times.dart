@@ -178,10 +178,15 @@ class _PrayerTimesState extends State<PrayerTimes> {
 
   void changeSelectedTime() {
     setState(() {
-      int index = _prayerTimesItems.indexWhere((x) => x.isSelected);
+      int currentTimeIndex = _prayerTimesItems.indexWhere((x) => x.isSelected);
+      int nextTimeIndex = _prayerTimesItems.indexWhere((x) => x.isNext);
 
-      if (!index.isNegative) {
-        _prayerTimesItems[index].isSelected = false;
+      if (!currentTimeIndex.isNegative) {
+        _prayerTimesItems[currentTimeIndex].isSelected = false;
+      }
+
+      if (!nextTimeIndex.isNegative) {
+        _prayerTimesItems[nextTimeIndex].isNext = false;
       }
 
       for (int i = 0; i < _prayerTimesItems.length; i++) {
@@ -189,12 +194,14 @@ class _PrayerTimesState extends State<PrayerTimes> {
 
         if (_prayerTimesItems[i].date == _date) {
           _prayerTimesItems[i].isSelected = true;
+          _prayerTimesItems[nextIndex].isNext = true;
           break;
         }
 
         if (_prayerTimesItems[i].index == 0) {
           if (_prayerTimesItems[i].date.isAfter(_date)) {
             _prayerTimesItems[5].isSelected = true;
+            _prayerTimesItems[0].isNext = true;
             break;
           }
         }
@@ -202,6 +209,7 @@ class _PrayerTimesState extends State<PrayerTimes> {
         if (_prayerTimesItems[i].date.isBefore(_date) &&
             _prayerTimesItems[nextIndex].date.isAfter(_date)) {
           _prayerTimesItems[i].isSelected = true;
+          _prayerTimesItems[nextIndex].isSelected = true;
           break;
         }
       }
@@ -209,13 +217,9 @@ class _PrayerTimesState extends State<PrayerTimes> {
   }
 
   void calculateCountDown() {
-    var selectedTimeIndex = _prayerTimesItems.indexWhere(
-      (x) => x.isSelected == true,
-    );
+    var nextTimeIndex = _prayerTimesItems.indexWhere((x) => x.isNext == true);
 
-    var nextIndex = selectedTimeIndex + 1;
-
-    var difference = _prayerTimesItems[nextIndex].date.difference(_date);
+    var difference = _prayerTimesItems[nextTimeIndex].date.difference(_date);
 
     if (difference.isNegative || difference.inSeconds == 0) {
       changeSelectedTime();
@@ -229,7 +233,7 @@ class _PrayerTimesState extends State<PrayerTimes> {
         _countDownModel.hour = hours.toString().padLeft(2, '0');
         _countDownModel.minute = minutes.toString().padLeft(2, '0');
         _countDownModel.second = seconds.toString().padLeft(2, '0');
-        _countDownModel.timeName = _prayerTimesItems[nextIndex].name;
+        _countDownModel.timeName = _prayerTimesItems[nextTimeIndex].name;
       });
     }
 

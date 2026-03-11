@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend_flutter/helpers/prayer_times_calculator_helper.dart';
-import 'package:frontend_flutter/helpers/prayer_times_model.dart';
+import 'package:frontend_flutter/models/prayer_times/prayer_times_model.dart';
 import 'package:intl/intl.dart';
 import 'package:memory_cache/memory_cache.dart';
 

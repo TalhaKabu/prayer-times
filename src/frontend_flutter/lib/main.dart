@@ -17,6 +17,7 @@ class MainApp extends StatelessWidget {
           seedColor: Color(0xFFD0F3E4),
           primary: Color(0xFF11d483),
           primaryFixed: Color(0xFFE5F8F0),
+          primaryFixedDim: Color.fromARGB(255, 244, 253, 250),
           onPrimaryFixedVariant: Color(0xFFF7FDFB),
           secondary: Colors.grey[500],
           secondaryFixed: Colors.grey[200],

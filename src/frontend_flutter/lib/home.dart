@@ -21,15 +21,15 @@ class _HomeState extends State<Home> {
     });
   }
 
-  final pages = [
-    const PrayerTimes(),
-    const Quran(),
-    const Qible(),
-    const More(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final pages = [
+      const PrayerTimes(),
+      const Quran(),
+      const Qible(),
+      const More(),
+    ];
+
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(

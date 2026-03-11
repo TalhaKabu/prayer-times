@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:frontend_flutter/helpers/prayer_times_model.dart';
+import 'package:frontend_flutter/models/prayer_times/prayer_times_model.dart';
 
 class PrayerTimesCalculatorHelper {
   static const double deg2Rad = pi / 180;

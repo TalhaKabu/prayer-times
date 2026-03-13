@@ -15,35 +15,34 @@ class PrayerTimes extends StatefulWidget {
 
 class _PrayerTimesState extends State<PrayerTimes> {
   bool _isLoading = false;
-  DateTime _currentDate = DateTime.now();
-  // DateTime(
-  //   2026,
-  //   3,
-  //   10,
-  //   23,
-  //   59,
-  //   30,
-  // );
   DateTime _date = DateTime.now();
   // DateTime(
   //   2026,
   //   3,
-  //   10,
+  //   14,
   //   23,
   //   59,
-  //   30,
+  //   40,
   // );
   double lat = 41.0082;
   double lng = 28.9784;
   List<PrayerTimesModel> _prayerTimesItems = [];
 
-  Future<void> loadPrayerTimes() async {
-    if (_date.day != _currentDate.day) {
-      loadPrayerTimes();
-      _currentDate = _date;
-      return;
-    }
+  void _onDateDayChanged(DateTime date) {
+    setState(() {
+      _date = date;
+    });
+    loadPrayerTimes();
+  }
 
+  void _onCountdownZero(DateTime date) {
+    setState(() {
+      _date = date;
+    });
+    changeSelectedTime();
+  }
+
+  Future<void> loadPrayerTimes() async {
     _isLoading = true;
 
     var dateTomorrow = DateTime(
@@ -78,23 +77,23 @@ class _PrayerTimesState extends State<PrayerTimes> {
     //   _prayerTimesItems[0].date.day,
     //   23,
     //   58,
-    //   50,
+    //   30,
     // );
     // _prayerTimesItems[1].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[1].date.day,
     //   23,
-    //   59,
-    //   00,
+    //   58,
+    //   40,
     // );
     // _prayerTimesItems[2].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[2].date.day,
     //   23,
-    //   59,
-    //   10,
+    //   58,
+    //   50,
     // );
     // _prayerTimesItems[3].date = DateTime(
     //   2026,
@@ -102,7 +101,7 @@ class _PrayerTimesState extends State<PrayerTimes> {
     //   _prayerTimesItems[4].date.day,
     //   23,
     //   59,
-    //   20,
+    //   00,
     // );
     // _prayerTimesItems[4].date = DateTime(
     //   2026,
@@ -110,7 +109,7 @@ class _PrayerTimesState extends State<PrayerTimes> {
     //   _prayerTimesItems[4].date.day,
     //   23,
     //   59,
-    //   30,
+    //   10,
     // );
     // _prayerTimesItems[5].date = DateTime(
     //   2026,
@@ -118,55 +117,55 @@ class _PrayerTimesState extends State<PrayerTimes> {
     //   _prayerTimesItems[5].date.day,
     //   23,
     //   59,
-    //   40,
+    //   20,
     // );
     // _prayerTimesItems[6].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[6].date.day,
-    //   0,
-    //   0,
-    //   10,
+    //   23,
+    //   58,
+    //   40,
     // );
     // _prayerTimesItems[7].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[7].date.day,
-    //   0,
-    //   0,
-    //   20,
+    //   23,
+    //   58,
+    //   50,
     // );
     // _prayerTimesItems[8].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[8].date.day,
-    //   0,
-    //   0,
-    //   30,
+    //   23,
+    //   59,
+    //   00,
     // );
     // _prayerTimesItems[9].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[9].date.day,
-    //   0,
-    //   0,
-    //   40,
+    //   23,
+    //   59,
+    //   10,
     // );
     // _prayerTimesItems[10].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[10].date.day,
-    //   0,
-    //   0,
-    //   50,
+    //   23,
+    //   59,
+    //   20,
     // );
     // _prayerTimesItems[11].date = DateTime(
     //   2026,
     //   3,
     //   _prayerTimesItems[11].date.day,
-    //   0,
-    //   1,
-    //   00,
+    //   23,
+    //   59,
+    //   30,
     // );
 
     changeSelectedTime();
@@ -213,6 +212,8 @@ class _PrayerTimesState extends State<PrayerTimes> {
       _prayerTimesItems[currentTimeIndex].isSelected = true;
       _prayerTimesItems[nextTimeIndex].isNext = true;
     });
+
+    _isLoading = false;
   }
 
   @override
@@ -240,13 +241,17 @@ class _PrayerTimesState extends State<PrayerTimes> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 5,
                 children: [
-                  Text(DateFormat("dd MMM yyyy").format(_date)),
+                  Text(DateFormat("dd MM yyyy HH:mm:ss").format(_date)),
                   Text('-'),
                   Text('20 Ramazan 1447'),
                 ],
               ),
               SizedBox(height: 10),
-              Countdown(prayerTimesItems: _prayerTimesItems),
+              Countdown(
+                prayerTimesItems: _prayerTimesItems,
+                onDateDayChanged: _onDateDayChanged,
+                onCountDownZero: _onCountdownZero,
+              ),
               SizedBox(height: 10),
               Times(
                 prayerTimesItems: _prayerTimesItems

@@ -1,14 +1,21 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:frontend_flutter/models/prayer_times/prayer_times_model.dart';
+import 'package:intl/intl.dart';
 
 class Countdown extends StatefulWidget {
-  Countdown({required this.prayerTimesItems, super.key});
+  Countdown({
+    required this.prayerTimesItems,
+    required this.onDateDayChanged,
+    required this.onCountDownZero,
+    super.key,
+  });
 
   final CountdownModel countdownModel = CountdownModel();
   final List<PrayerTimesModel> prayerTimesItems;
+  final ValueChanged<DateTime> onDateDayChanged;
+  final ValueChanged<DateTime> onCountDownZero;
 
   @override
   State<Countdown> createState() => _CountdownState();
@@ -16,9 +23,31 @@ class Countdown extends StatefulWidget {
 
 class _CountdownState extends State<Countdown> {
   late Timer _timer;
+  // DateTime _currentDate = DateTime(2026, 3, 14, 23, 59, 40);
   DateTime _date = DateTime.now();
+  // DateTime(
+  //   2026,
+  //   3,
+  //   14,
+  //   23,
+  //   59,
+  //   40,
+  // );
 
   void calculateCountDown() {
+    // test amacli
+    // if (_currentDate.day != _date.day) {
+    //   _date = DateTime(2026, 3, _date.day, 23, 58, 00);
+    //   _currentDate = _date;
+    //   widget.onDateDayChanged.call(_date);
+    //   return;
+    // }
+
+    if (DateTime.now().day != _date.day) {
+      widget.onDateDayChanged.call(_date);
+      return;
+    }
+
     var nextTimeIndex = widget.prayerTimesItems.indexWhere(
       (x) => x.isNext == true,
     );
@@ -28,8 +57,7 @@ class _CountdownState extends State<Countdown> {
     );
 
     if (difference.isNegative || difference.inSeconds == 0) {
-      // changeSelectedTime();
-      calculateCountDown();
+      widget.onCountDownZero.call(_date);
     } else {
       int hours = difference.inHours % 24;
       int minutes = difference.inMinutes % 60;
@@ -51,8 +79,9 @@ class _CountdownState extends State<Countdown> {
     _timer = Timer.periodic(Duration(seconds: 1), (_) {
       setState(() {
         _date = DateTime.now();
+        // _date = _date.add(Duration(seconds: 1)); // test amacli
         calculateCountDown();
-      }); // sadece countdown güncellenecek
+      });
     });
   }
 

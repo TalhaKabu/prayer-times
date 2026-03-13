@@ -88,7 +88,7 @@ class _TimesState extends State<Times> {
                     ),
                   ),
                   Text(
-                    DateFormat('HH:mm:ss').format(item.date),
+                    DateFormat('dd.MM HH:mm:ss').format(item.date),
                     style: TextStyle(
                       color: item.isSelected
                           ? colorScheme.primary

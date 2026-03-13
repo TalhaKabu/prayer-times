@@ -112,9 +112,9 @@ class PrayerTimesCalculatorHelper {
 
     double L = deg2Rad * (q + 1.915 * sin(g) + 0.020 * sin(2 * g));
 
-    double RA = rad2Deg * atan2(cos(23.44 * deg2Rad) * sin(L), cos(L));
+    double rA = rad2Deg * atan2(cos(23.44 * deg2Rad) * sin(L), cos(L));
 
-    return (q / 15 - RA / 15) + 0.0008 * sin(2 * pi * day / 365);
+    return (q / 15 - rA / 15) + 0.0008 * sin(2 * pi * day / 365);
   }
 
   static double _hourAngle(double lat, double decl, double angle) {

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend_flutter/models/quran/surah_model.dart';
+import 'package:frontend_flutter/quran/childs/quran_page_view.dart';
 
 List<SurahModel> parseSurahs(String jsonString) {
   List data = jsonDecode(jsonString);
@@ -61,7 +62,14 @@ class _SurahListState extends State<SurahList> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => QuranPageView(index: surahs[index].id),
+                      ),
+                    );
+                  },
                   child: Container(
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(

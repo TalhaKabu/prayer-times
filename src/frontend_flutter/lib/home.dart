@@ -14,11 +14,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
+  int _selectedTabIndex = 0;
 
-  void getSelectedIndex(int index) {
+  void _onSelectedTabIndexChanged(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedTabIndex = index;
     });
   }
 
@@ -26,12 +26,10 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
 
-    // Sistem navigation bar rengini değiştir
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.white, // alt bar arka plan rengi
-        systemNavigationBarIconBrightness:
-            Brightness.dark, // ikonlar siyah olsun
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
   }
@@ -50,7 +48,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       extendBody: true,
       backgroundColor: colorScheme.onPrimaryFixedVariant,
-      appBar: _selectedIndex == 1
+      appBar: _selectedTabIndex == 1
           ? AppBar(
               toolbarHeight: 50,
               backgroundColor: colorScheme.onPrimaryFixedVariant,
@@ -85,10 +83,10 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-          child: pages[_selectedIndex],
+          child: pages[_selectedTabIndex],
         ),
       ),
-      bottomNavigationBar: MyBottomNavBar(onSend: getSelectedIndex),
+      bottomNavigationBar: MyBottomNavBar(onSend: _onSelectedTabIndexChanged),
     );
   }
 }

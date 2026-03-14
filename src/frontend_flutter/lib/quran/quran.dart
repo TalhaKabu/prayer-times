@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:frontend_flutter/models/quran/surah_model.dart';
-import 'package:frontend_flutter/models/quran/surah_with_info_model.dart';
 import 'package:frontend_flutter/quran/childs/surah_list.dart';
-import 'package:unorm_dart/unorm_dart.dart' as unorm;
-
-class QuranData {
-  final List<SurahModel> surahs;
-  final List<SurahWithInfoModel> surahsInfo;
-
-  QuranData(this.surahs, this.surahsInfo);
-}
 
 class Quran extends StatefulWidget {
   const Quran({super.key});
@@ -20,31 +10,11 @@ class Quran extends StatefulWidget {
 }
 
 class _QuranState extends State<Quran> {
-  List<SurahModel> _filteredSurahs = [];
-  List<SurahModel> _surahs = [];
-  final TextEditingController controller = TextEditingController();
-
-  void _filterItems() {
-    String query = controller.text.toLowerCase();
-    setState(() {
-      if (query.isEmpty) {
-        _filteredSurahs = List.from(_surahs); // If empty, show all
-      } else {
-        _filteredSurahs = _surahs
-            .where(
-              (item) => unorm
-                  .nfkd(item.translation.toLowerCase())
-                  .contains(unorm.nfkd(query)),
-            ) // Apply the filter
-            .toList();
-      }
-    });
-  }
-
+  final TextEditingController _controller = TextEditingController();
   @override
   void initState() {
     super.initState();
-    controller.addListener(_filterItems);
+    // _controller.addListener(_filterItems);
   }
 
   @override
@@ -81,7 +51,7 @@ class _QuranState extends State<Quran> {
               Expanded(
                 child: Center(
                   child: TextField(
-                    controller: controller,
+                    controller: _controller,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Sure veya ayet içeriği ara',

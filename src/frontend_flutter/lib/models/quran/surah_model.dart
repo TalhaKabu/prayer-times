@@ -5,7 +5,7 @@ class SurahModel {
   final String translation;
   final String type;
   final int totalVerses;
-  final List<VerseModel> verses;
+  final List<VerseModel>? verses;
 
   SurahModel({
     required this.id,
@@ -14,7 +14,7 @@ class SurahModel {
     required this.translation,
     required this.type,
     required this.totalVerses,
-    required this.verses,
+    this.verses,
   });
 
   factory SurahModel.fromJson(Map<String, dynamic> json) {
@@ -25,9 +25,9 @@ class SurahModel {
       translation: json['translation'],
       type: json['type'],
       totalVerses: json['total_verses'],
-      verses: (json['verses'] as List)
-          .map((v) => VerseModel.fromJson(v))
-          .toList(),
+      verses: json['verses'] != null
+          ? (json['verses'] as List).map((v) => VerseModel.fromJson(v)).toList()
+          : null,
     );
   }
 
@@ -39,7 +39,7 @@ class SurahModel {
       'translation': translation,
       'type': type,
       'total_verses': totalVerses,
-      'verses': verses.map((v) => v.toJson()).toList(),
+      'verses': verses?.map((v) => v.toJson()).toList(),
     };
   }
 }

@@ -1,20 +1,15 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend_flutter/models/quran/surah_model.dart';
 import 'package:frontend_flutter/models/quran/surah_with_info_model.dart';
+import 'package:frontend_flutter/quran/childs/surah_list.dart';
+import 'package:unorm_dart/unorm_dart.dart' as unorm;
 
-List<SurahModel> parseSurahs(String jsonString) {
-  final List data = jsonDecode(jsonString);
-  return data.map((e) => SurahModel.fromJson(e)).toList();
-}
+class QuranData {
+  final List<SurahModel> surahs;
+  final List<SurahWithInfoModel> surahsInfo;
 
-List<SurahWithInfoModel> parseSurahsWithInfo(String jsonString) {
-  final List data = jsonDecode(jsonString);
-  return data.map((e) => SurahWithInfoModel.fromJson(e)).toList();
+  QuranData(this.surahs, this.surahsInfo);
 }
 
 class Quran extends StatefulWidget {
@@ -25,34 +20,36 @@ class Quran extends StatefulWidget {
 }
 
 class _QuranState extends State<Quran> {
-  late Future<List<dynamic>> _allData;
+  List<SurahModel> _filteredSurahs = [];
+  List<SurahModel> _surahs = [];
+  final TextEditingController controller = TextEditingController();
 
-  Future<List<SurahModel>> loadSurahs() async {
-    final jsonString = await rootBundle.loadString(
-      'assets/jsons/quran_tr.json',
-    );
-    // compute ile parse ediyoruz → ana thread takılmaz
-    return compute(parseSurahs, jsonString);
-  }
-
-  Future<List<SurahWithInfoModel>> loadSurahsWithInfo() async {
-    final jsonString = await rootBundle.loadString(
-      'assets/jsons/quran_uthmani.json',
-    );
-    // compute ile parse ediyoruz → ana thread takılmaz
-    return compute(parseSurahsWithInfo, jsonString);
+  void _filterItems() {
+    String query = controller.text.toLowerCase();
+    setState(() {
+      if (query.isEmpty) {
+        _filteredSurahs = List.from(_surahs); // If empty, show all
+      } else {
+        _filteredSurahs = _surahs
+            .where(
+              (item) => unorm
+                  .nfkd(item.translation.toLowerCase())
+                  .contains(unorm.nfkd(query)),
+            ) // Apply the filter
+            .toList();
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    _allData = Future.wait([loadSurahs(), loadSurahsWithInfo()]);
+    controller.addListener(_filterItems);
   }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final TextEditingController controller = TextEditingController();
 
     return Column(
       children: [
@@ -97,116 +94,116 @@ class _QuranState extends State<Quran> {
             ],
           ),
         ),
-        Expanded(
-          child: FutureBuilder(
-            future: _allData,
-            builder: (context, asyncSnapshot) {
-              if (asyncSnapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (asyncSnapshot.hasError) {
-                return Center(child: Text("Hata: ${asyncSnapshot.error}"));
-              } else if (!asyncSnapshot.hasData ||
-                  asyncSnapshot.data!.isEmpty) {
-                return const Center(child: Text("Veri yok"));
-              }
-
-              final surahs = asyncSnapshot.data![0] as List<SurahModel>;
-              final surahsWithInfo =
-                  asyncSnapshot.data![1] as List<SurahWithInfoModel>;
-
-              return ListView.builder(
-                itemCount: surahs.length,
-                itemBuilder: (context, index) {
-                  var surah = surahs[index];
-                  var surahWithInfo = surahsWithInfo[index];
-                  // var surahWithInfo = surahsWithInfo[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: GestureDetector(
-                      onTap: () {
-                        print(surahWithInfo.englishName);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          color: index % 2 == 0 ? Colors.white : Colors.white,
+        SizedBox(height: 20),
+        Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            color: colorScheme.primary,
+          ),
+          child: Stack(
+            children: [
+              GestureDetector(
+                child: DefaultTextStyle(
+                  style: TextStyle(color: Colors.white),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        spacing: 10,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/read.svg',
+                            width: 16,
+                            height: 16,
+                            colorFilter: ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          Text('HATİME BAŞLA', style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "FATİHA SURESİ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight(600),
                         ),
-                        child: Row(
-                          spacing: 10,
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: colorScheme.primaryFixed,
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      surah.id.toString(),
-                                      style: TextStyle(
-                                        color: colorScheme.primary,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Ayet numarası: 1',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.secondaryFixed,
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      IntrinsicWidth(
+                        child: GestureDetector(
+                          onTap: () => {},
+                          child: Container(
+                            padding: EdgeInsets.only(
+                              top: 12,
+                              bottom: 12,
+                              left: 20,
+                              right: 20,
                             ),
-                            Column(
-                              spacing: 5,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(40),
+                              ),
+                              color: Colors.white,
+                            ),
+                            child: Row(
+                              spacing: 10,
                               children: [
                                 Text(
-                                  surah.translation,
-                                  style: TextStyle(fontWeight: FontWeight(600)),
-                                ),
-                                DefaultTextStyle(
-                                  style: TextStyle(
-                                    color: colorScheme.secondary,
-                                    fontSize: 12,
-                                  ),
-                                  child: Row(
-                                    spacing: 2,
-                                    children: [
-                                      Text('${surah.totalVerses} ayet'),
-                                      Text('·'),
-                                      Text('${surahWithInfo.ayahs[0].juz}.cüz'),
-                                      Text('·'),
-                                      Text(
-                                        '${surahWithInfo.ayahs[0].page - 1}.sayfa',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Spacer(),
-                            Column(
-                              children: [
-                                Text(
-                                  surah.name,
+                                  "Okumaya Başla",
                                   style: TextStyle(
                                     color: colorScheme.primary,
                                     fontSize: 20,
                                   ),
                                 ),
+                                SvgPicture.asset(
+                                  'assets/svgs/right_arrow.svg',
+                                  width: 24,
+                                  height: 24,
+                                  colorFilter: ColorFilter.mode(
+                                    colorScheme.primary,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              );
-            },
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                right: -10,
+                child: SvgPicture.asset(
+                  'assets/svgs/book_filled.svg',
+                  width: 40,
+                  height: 40,
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.secondary.withOpacity(0.6),
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+        SizedBox(height: 10),
+        SurahList(),
       ],
     );
   }

@@ -51,7 +51,20 @@ class _HomeState extends State<Home> {
       extendBody: true,
       backgroundColor: colorScheme.onPrimaryFixedVariant,
       appBar: _selectedIndex == 1
-          ? null
+          ? AppBar(
+              toolbarHeight: 50,
+              backgroundColor: colorScheme.onPrimaryFixedVariant,
+              title: Center(
+                child: Text(
+                  'Kuran',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            )
           : AppBar(
               backgroundColor: colorScheme.onPrimaryFixedVariant,
               leadingWidth: 60,
@@ -71,7 +84,7 @@ class _HomeState extends State<Home> {
             ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+          padding: EdgeInsets.only(top: 8, left: 16, right: 16),
           child: pages[_selectedIndex],
         ),
       ),

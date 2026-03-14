@@ -14,6 +14,7 @@ dependencies:
   flutter_svg: ^2.2.4
   rive: ^0.12.4
   memory_cache: ^1.2.0
+  unorm_dart: ^0.3.2
 
 dev_dependencies:
   flutter_test:

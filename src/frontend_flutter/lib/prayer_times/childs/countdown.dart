@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:frontend_flutter/models/prayer_times/prayer_times_model.dart';
-import 'package:intl/intl.dart';
 
 class Countdown extends StatefulWidget {
   Countdown({
